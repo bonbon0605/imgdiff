@@ -13,7 +13,9 @@ class ImgDiff < Thor::Group
     original,target,output = original_image_path,target_image_path,composite_image_path
 
     # when output file name is not given, make it from file names with timestamp
-    output = File.basename(original,".*") + "_" + File.basename(target,".*") + "_diff_" + Time.now.strftime("%Y%m%d%H%M%S") + File.extname(original) if output.nil?
+    output = File.dirname(original) + '/' + File.basename(original,".*") + "_" + \
+             File.basename(target,".*") + "_diff_" + \
+             Time.now.strftime("%Y%m%d%H%M%S") + File.extname(original) if output.nil?
 
     raise "ERROR: #{original} is not found" unless File.exist?(original)
     raise "ERROR: #{target} is not found" unless File.exist?(target)
