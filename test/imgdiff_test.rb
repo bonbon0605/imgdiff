@@ -61,4 +61,14 @@ class ImgdiffTest < Minitest::Test
     system "rm #{output}"
   end
 
+  def test_it_does_not_make_diff_file_when_there_is_no_diff_between_two_files
+    output = 'test/images/composite_test.jpg'
+
+    assert_output "There is no diff between the files\n" do
+      ImgDiff.new([images[:original],images[:original],output]).invoke(:exec)
+    end
+
+    assert_equal false, File.exist?(output)
+  end
+
 end

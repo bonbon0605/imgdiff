@@ -23,6 +23,11 @@ class ImgDiff < Thor::Group
     original = Magick::Image.read(original).first
     target = Magick::Image.read(target).first
 
+    if original.difference(target) == [0.0,0.0,0.0]
+      puts 'There is no diff between the files'
+      return true
+    end
+
     original.composite(target,Magick::CenterGravity,Magick::DifferenceCompositeOp).write(output)
   end
 end
