@@ -10,16 +10,8 @@ Gem::Specification.new do |spec|
   spec.email         = ["ogasawara_2005@yahoo.co.jp"]
 
   spec.summary       = %q{add command to confirm diff between image files}
-  spec.homepage      = "https://github.com/bonbon0605/"
+  spec.homepage      = "https://github.com/bonbon0605/imgdiff"
   spec.license       = "MIT"
-
-  # Prevent pushing this gem to RubyGems.org by setting 'allowed_push_host', or
-  # delete this section to allow pushing this gem to any host.
-  if spec.respond_to?(:metadata)
-    spec.metadata['allowed_push_host'] = "TODO: Set to 'http://mygemserver.com'"
-  else
-    raise "RubyGems 2.0 or newer is required to protect against public gem pushes."
-  end
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
   spec.bindir        = "exe"
