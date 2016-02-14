@@ -3,7 +3,7 @@ require 'test_helper'
 class ImgdiffTest < Minitest::Test
   def teardown
     Dir.glob('test/images/*').each do |file|
-      File.delete file unless images[:original] == file or images[:target] == file or images[:composite] == file
+      File.delete file unless images[:original] == file or images[:target] == file
     end
   end
 
