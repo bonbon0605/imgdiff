@@ -36,4 +36,16 @@ class ImgdiffTest < Minitest::Test
     assert !output.empty?
     output.each{|file| system "rm #{file}"}
   end
+
+  def test_that_when_image_file_not_exist_it_ends_with_exception
+    assert_raises RuntimeError do
+      ImgDiff.new(['test/images/not_found_image.jpg',images[:target]]).invoke("exec")
+    end
+    assert_raises RuntimeError do
+      ImgDiff.new([images[:original],'test/images/not_found_image.jpg']).invoke("exec")
+    end
+    assert_raises RuntimeError do
+      ImgDiff.new(['test/images/not_found_image.jpg','test/images/not_found_image.jpg']).invoke("exec")
+    end
+  end
 end
