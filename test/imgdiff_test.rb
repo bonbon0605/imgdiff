@@ -48,4 +48,17 @@ class ImgdiffTest < Minitest::Test
       ImgDiff.new(['test/images/not_found_image.jpg','test/images/not_found_image.jpg']).invoke(:exec)
     end
   end
+
+  def test_it_can_overwrite_the_output_file
+    output = 'test/images/composite_test.jpg'
+
+    ImgDiff.new([images[:original],images[:target],output]).invoke(:exec)
+    assert_equal true, same_image?(Magick::Image.read(output).first, Magick::Image.read(images[:composite]).first)
+
+    ImgDiff.new([images[:original],images[:composite],output]).invoke(:exec)
+    assert_equal false, same_image?(Magick::Image.read(output).first, Magick::Image.read(images[:composite]).first)
+
+    system "rm #{output}"
+  end
+
 end
