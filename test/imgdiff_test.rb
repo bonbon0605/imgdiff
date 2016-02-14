@@ -7,7 +7,7 @@ class ImgdiffTest < Minitest::Test
 
   def test_that_it_makes_diff_file
     output = 'test/images/composite_test.jpg'
-    ImgDiff.new([images[:original],images[:target], output + 'a']).invoke(:exec)
+    ImgDiff.new([images[:original],images[:target], output]).invoke(:exec)
 
     assert File.exist? output
     assert same_image? Magick::Image.read(images[:composite]).first, Magick::Image.read(output).first
